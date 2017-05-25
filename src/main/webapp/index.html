@@ -9,15 +9,14 @@
     <link href="index.css" rel="stylesheet"/>
 </head>
 <body>
-<h1 id="title">Wait for it...</h1>
-<form method="POST" action="hi">
-    <input type="text" name="name" placeholder="What's your name?">
-    <select name="lang">
-        <option value="en">English</option>
-        <option value="hu">Magyar</option>
-        <option value="pl">Polski</option>
-    </select>
-    <input type="submit">
-</form>
+<h1>Check the database</h1>
+
+<button id="check">Query</button><br><br>
+<p>What's your query?</p>
+<input id="query" name="query">
+
+<div id="result"></div>
+<div id="tables"></div>
+
 </body>
 </html>

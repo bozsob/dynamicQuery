@@ -8,13 +8,13 @@ public final class ConnectionUtil {
 
     public enum DatabaseName {
 
-        BFA
+        NORTHWIND
     }
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DATABASE_HOST = "localhost";
     private static final String DATABASE_USER = "root";
-    private static final String DATABASE_PASSWORD = "";
+    private static final String DATABASE_PASSWORD = "Zsofia091130";
     private static final int DATABASE_PORT = 3306;
 
     static {
