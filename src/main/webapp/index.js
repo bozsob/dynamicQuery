@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-    $("#result").empty();
-    $("#tables").hide();
     $("#check").click(function () {
+        $("#result").empty();
+        $("#tables").hide();
+        $("#columns").hide();
         $.ajax({
             url: "/query",
             type: "get",
@@ -10,20 +11,22 @@ $(document).ready(function() {
                 console.log(data);
                 var htmlString = "<table><tr><th>Shemas</th></tr>";
                 data.forEach(function (t) {
-                    htmlString += "<tr onclick='getTables()'><td>" + t + "</td>";
+                    htmlString += "<tr onclick='getTablesName()'><td>" + t + "</td>";
                 });
                 htmlString += "</table>";
             $("#result").append(htmlString);
             }
         })
+        $("#result").show();
     })
-    $("#result").show();
+
 });
 
-function getTables() {
+function getTablesName() {
 
     $("#tables").empty();
     $("#result").hide();
+    $("#columns").hide();
     var shemaName = $("td").val();
     $.ajax({
         url: "/table",
@@ -33,11 +36,35 @@ function getTables() {
             console.log(data);
             var htmlString = "<table><tr><th>Tables</th></tr>";
             data.forEach(function (t) {
-                htmlString += "<tr onclick='getTables()'><td>" + t + "</td>";
+                htmlString += "<tr onclick='getTable()'><td>" + t + "</td>";
             });
             htmlString += "</table>";
             $("#tables").append(htmlString);
         }
     })
     $("#tables").show();
+}
+
+function getTable() {
+
+    $("#columns").empty();
+    $("#result").hide();
+    $("#tables").hide();
+    var tableName = $("td").val();
+    $.ajax({
+        url: "/column",
+        type: "get",
+        data: {"table" : tableName},
+        success: function (data) {
+            console.log(data);
+
+            var htmlString = "<table><tr><th>Columns</th></tr>";
+            data.forEach(function (t) {
+                htmlString += "<tr onclick='getTable()'><td>" + t + "</td>";
+            });
+            htmlString += "</table>";
+            $("#columns").append(htmlString);
+        }
+    })
+    $("#columns").show();
 }

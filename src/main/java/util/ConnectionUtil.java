@@ -8,7 +8,8 @@ public final class ConnectionUtil {
 
     public enum DatabaseName {
 
-        NORTHWIND
+        NORTHWIND,
+        BFA
     }
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";

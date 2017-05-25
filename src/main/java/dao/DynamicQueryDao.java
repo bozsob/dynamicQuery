@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface DynamicQueryDao {
 
-    List<String> getTablesFromDatabase() throws Exception;
-    List<String> getColumnsFromTable(String table) throws Exception;
+    List<String> getCatalogsFromDatabase() throws Exception;
+    List<String> getTablesNameFromDatabase() throws Exception;
+    List<String> getDataFromTable(String table) throws Exception;
 }

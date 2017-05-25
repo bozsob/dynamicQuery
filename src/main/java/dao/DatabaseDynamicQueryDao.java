@@ -7,11 +7,13 @@ import java.util.List;
 public class DatabaseDynamicQueryDao implements DynamicQueryDao {
 
     private final Connection conn;
+    private String query;
 
     public DatabaseDynamicQueryDao(Connection conn) {
         this.conn = conn;
     }
 
+    @Override
     public List<String> getCatalogsFromDatabase() throws Exception {
 
         List<String> catalogs = new ArrayList<>();
@@ -25,14 +27,12 @@ public class DatabaseDynamicQueryDao implements DynamicQueryDao {
         for(String t : catalogs) {
             System.out.println(t);
         }
-
         return catalogs;
-
     }
 
 
     @Override
-    public List<String> getTablesFromDatabase() throws Exception {
+    public List<String> getTablesNameFromDatabase() throws Exception {
 
         List<String> tablesName = new ArrayList<>();
 
@@ -51,7 +51,19 @@ public class DatabaseDynamicQueryDao implements DynamicQueryDao {
     }
 
     @Override
-    public List<String> getColumnsFromTable(String table) throws Exception {
+    public List<String> getDataFromTable(String table) throws Exception {
+
+        query = "SELECT * FROM ?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setString(1, table);
+
+        ResultSet rs = ps.executeQuery();
+        ResultSetMetaData rsmd = rs.getMetaData();
+
+        while(rs.next()) {
+
+        }
+
         return null;
     }
 }
